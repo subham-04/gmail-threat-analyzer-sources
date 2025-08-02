@@ -13,6 +13,9 @@ Manual email security analysis is time-consuming, error-prone, and requires tech
 
 Watch the full demo video:  
 
+👇 Click below
+
+
 [![Video Title](https://img.youtube.com/vi/sSqZGpjCEHE/0.jpg)](https://www.youtube.com/watch?v=sSqZGpjCEHE)
 
 ---
