@@ -7,6 +7,22 @@
 ### **Primary Problem Solved**
 Manual email security analysis is time-consuming, error-prone, and requires technical expertise. Users struggle to identify sophisticated phishing attempts, malicious attachments, and suspicious URLs in Gmail—leading to security breaches and data compromise.
 
+---
+
+## 📺 YouTube Demo
+
+Watch the full demo video:  
+👉 [Click here to view on YouTube]([VIDEO_URL_HERE](https://youtu.be/sSqZGpjCEHE?si=RLLsK5ip1grucpne))
+
+---
+
+## 🧩 Download Extension
+
+Install the Gmail Threat Analyzer Chrome Extension:  
+👉 [Click here to install from Chrome Web Store](EXTENSION_LINK_HERE)
+
+---
+
 ### **Target Users**
 - **Primary:** Non-technical Gmail users who need instant security analysis  
 - **Secondary:** Security analysts and IT professionals requiring detailed threat intelligence  
