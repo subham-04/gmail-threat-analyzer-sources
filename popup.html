@@ -1,0 +1,733 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Threat Analyzer</title>
+    <!-- Bulma CSS CDN with Dark Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Enhanced Dark Mode Theme using Bulma Dark Colors */
+        :root {
+            /* Bulma Dark Mode Color Palette */
+            --bulma-primary-dark: #00c4a7;
+            --bulma-info-dark: #209cee;
+            --bulma-success-dark: #23d160;
+            --bulma-warning-dark: #ffdd57;
+            --bulma-danger-dark: #ff3860;
+            --bulma-dark: #363636;
+            --bulma-text-dark: #4a4a4a;
+            --bulma-black-bis: #121212;
+            --bulma-black-ter: #242424;
+            --bulma-grey-darker: #363636;
+            --bulma-grey-dark: #4a4a4a;
+            --bulma-grey: #7a7a7a;
+            --bulma-grey-light: #b5b5b5;
+            --bulma-grey-lighter: #dbdbdb;
+            --bulma-white-ter: #f5f5f5;
+            --bulma-white-bis: #fafafa;
+            --bulma-white: #ffffff;
+            
+            /* Dark Theme Variables */
+            --color-bg: var(--bulma-black-bis);
+            --color-bg-variant: var(--bulma-black-ter);
+            --color-bg-card: var(--bulma-grey-darker);
+            --color-primary: var(--bulma-primary-dark);
+            --color-primary-variant: #00a693;
+            --color-success: var(--bulma-success-dark);
+            --color-warning: var(--bulma-warning-dark);
+            --color-danger: var(--bulma-danger-dark);
+            --color-white: var(--bulma-white);
+            --color-light: var(--bulma-grey-light);
+            --color-muted: var(--bulma-grey);
+            --text-accent: var(--bulma-info-dark);
+            --border-color: var(--bulma-grey-dark);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Bulma Font Family */
+        .is-family-sans-serif {
+            font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+        }
+
+        body {
+            width: 500px;
+            min-height: 600px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-variant) 100%);
+            color: var(--color-white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 1.5rem;
+        }
+
+        /* Enhanced Box Styling */
+        .box {
+            /* background: var(--color-bg-variant); */
+            background: #242424b0;
+            border: 1px solid #4a4a4a66;
+            /* border: 1px solid var(--border-color); */
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .box:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            background: #24242408;
+            border: 1.5px solid #4a4a4a;
+            transition: var(--transition);
+
+        }
+
+        /* Title Enhancements */
+        .title {
+            color: var(--color-primary);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .title.is-5 {
+            color: var(--color-white);
+            font-weight: 600;
+            margin-bottom: 1.5rem !important;
+        }
+
+        /* Enhanced Input Styling */
+        .input {
+            background-color: var(--bulma-black-bis);
+            border: 2px solid var(--border-color);
+            color: var(--color-white);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 196, 167, 0.1);
+        }
+
+        .input::placeholder {
+            color: var(--color-muted);
+        }
+
+        /* Enhanced Button Styling */
+        .button {
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .button.is-success {
+            background: hsl(141, 71%, 48%);
+            color: white;
+        }
+
+        .button.is-success:hover {
+            background: hsl(141, 71%, 45%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Analyze and Reanalyze Button Hover Effects */
+        .button.has-background-success:hover {
+            /* background: hsl(141, 71%, 45%) !important; */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            background: rgba(72, 199, 142, 0) !important;
+            border: 1px solid rgb(72, 199, 142) !important;
+            color: rgb(72, 199, 142) !important;
+            transition: var(--transition);
+        }
+
+        .button.has-background-white-ter:hover {
+            background: rgba(245, 245, 245, 0.034) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgb(245, 245, 245) !important;
+            color: rgb(245, 245, 245) !important;
+        }
+
+        .button.is-warning {
+            background: linear-gradient(135deg, var(--bulma-warning-dark) 0%, #ffd83d 100%);
+            color: var(--bulma-text-dark);
+        }
+
+        .button.is-warning:hover {
+            background: linear-gradient(135deg, #ffd83d 0%, var(--bulma-warning-dark) 100%);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .button.is-light-grey {
+            background: var(--bulma-grey-light);
+            color: var(--bulma-text-dark);
+        }
+
+        .button.is-light-grey:hover {
+            background: var(--bulma-grey);
+            color: var(--color-white);
+        }
+
+        .button.is-dark {
+            background: var(--color-bg-variant);
+            border: 1px solid var(--border-color);
+            color: var(--color-white);
+        }
+
+        .button.is-dark:hover {
+            background: var(--color-bg-card);
+            border-color: var(--color-primary);
+        }
+
+        /* Analysis buttons styling - transparent with border only */
+        .button.is-primary.analysis-btn {
+            background: transparent !important;
+            border: 2px solid var(--color-primary) !important;
+            color: var(--color-primary) !important;
+        }
+
+        .button.is-primary.analysis-btn:hover {
+            background: rgba(0, 196, 167, 0.1) !important;
+            border-color: var(--color-primary) !important;
+            color: var(--color-primary) !important;
+        }
+
+        /* Severity Level Enhancements */
+        .severity-clean { 
+            background: hsla(141, 71%, 48%, 0.9);
+            color: white;
+            border-radius: 8px;
+        }
+        .severity-low { 
+            background: hsla(204, 86%, 53%, 0.9);
+            color: white;
+            border-radius: 8px;
+        }
+        .severity-medium { 
+            background: hsla(48, 100%, 67%, 0.9);
+            color: var(--bulma-black-bis);
+            border-radius: 8px;
+        }
+        .severity-high { 
+            background: hsla(348, 100%, 61%, 0.9);
+            color: white;
+            border-radius: 8px;
+        }
+
+        /* Loading Spinner Enhancement */
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--color-primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Enhanced Score Display */
+        .score-red {
+            color: var(--color-danger);
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced Table Styling */
+        .table {
+            background-color: var(--color-bg-variant);
+            color: hsl(0, 0%, 86%);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .table th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 1rem;
+        }
+
+        .table td {
+            border-color: var(--border-color);
+            padding: 0.75rem 1rem;
+            color: hsl(0, 0%, 86%);
+            font-weight: 500;
+        }
+
+        .table a {
+            color: var(--text-accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .table a:hover {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        /* URL Truncation Enhancement */
+        .truncate-url {
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Checkbox Styling */
+        .checkbox {
+            color: var(--color-light);
+        }
+
+        .checkbox input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .checkbox[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Help Text */
+        .help {
+            font-size: 0.875rem;
+            color: var(--color-muted);
+        }
+
+        .help.has-text-success {
+            color: var(--color-success) !important;
+        }
+
+        .help.has-text-danger {
+            color: var(--color-danger) !important;
+        }
+
+        /* Status Information Styling */
+        .mt-4.is-size-7 p {
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            background: var(--color-bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--color-white);
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Notification */
+        .notification {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Custom Blockquote Styling */
+        blockquote {
+            border-left: 4px solid #9b59b6;
+            padding-left: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(155, 89, 182, 0.1);
+            color: var(--color-white);
+            font-size: 0.875rem;
+        }
+
+        /* Email Subject Blockquote Styling */
+        #emailSubject {
+            font-size: 1.225rem;
+            font-weight: 600;
+            background-color: var(--bulma-grey-dark);
+            border-left-color: var(--bulma-info-dark);
+        }
+
+        /* Overall Email Score section blockquotes - grey border */
+        .mt-4.is-size-7 blockquote {
+            border-left-color: var(--bulma-grey);
+            background: rgba(122, 122, 122, 0.1);
+        }
+
+        /* Severity paragraph styling - 50% larger font for entire line */
+        .is-size-7.has-text-light.mt-2 {
+            font-size: 1.5em !important;
+        }
+
+        /* Copy Button Enhancement */
+        .copy-url-btn, .copy-domain-btn {
+            background: var(--color-primary) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            transition: var(--transition) !important;
+            font-size: 0.7rem !important;
+            padding: 0.25rem 0.5rem !important;
+            min-width: 50px;
+        }
+
+        .copy-url-btn:hover, .copy-domain-btn:hover {
+            background: var(--color-primary-variant) !important;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Blockquote with copy button styling */
+        blockquote.copy-container {
+            position: relative !important;
+            padding-right: 4rem !important;
+            min-height: 2.5rem !important;
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+        }
+
+        /* Copy button positioning */
+        blockquote.copy-container .copy-domain-btn {
+            position: absolute !important;
+            top: 0.5rem !important;
+            right: 0.5rem !important;
+            z-index: 10 !important;
+            min-width: 2rem !important;
+            height: 1.5rem !important;
+            padding: 0.25rem !important;
+            font-size: 0.7rem !important;
+            background: rgba(122, 122, 122, 0.3) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        blockquote.copy-container .copy-domain-btn:hover {
+            background: rgba(122, 122, 122, 0.5) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg-variant);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bulma-primary-dark);
+        }
+
+        /* Side Panel Styling */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: var(--color-bg-card);
+            border-left: 2px solid var(--color-primary);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-panel.show {
+            right: 0;
+        }
+
+        .side-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--color-bg-variant);
+        }
+
+        .side-panel-header .title {
+            margin: 0 !important;
+            color: var(--color-primary);
+        }
+
+        .side-panel-close-btn {
+            background: var(--color-bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--color-white) !important;
+        }
+
+        .side-panel-close-btn:hover {
+            background: var(--color-danger) !important;
+            border-color: var(--color-danger) !important;
+            color: white !important;
+        }
+
+        .side-panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .side-panel-body {
+            color: var(--color-white);
+        }
+
+        .side-panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .side-panel-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Side Panel Item Styling */
+        .side-panel-item {
+            background: var(--color-bg-variant);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .side-panel-item:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .side-panel-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .side-panel-item-title {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+
+        .side-panel-item-score {
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .side-panel-item-url {
+            font-size: 0.8rem;
+            color: var(--color-light);
+            word-break: break-all;
+            margin: 0.5rem 0;
+        }
+
+        .side-panel-item-details {
+            font-size: 0.75rem;
+            color: var(--bulma-grey-lighter);
+            margin-top: 0.5rem;
+        }
+
+        .side-panel-copy-btn {
+            background: var(--color-primary) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-size: 0.7rem !important;
+            padding: 0.25rem 0.5rem !important;
+        }
+
+        .side-panel-copy-btn:hover {
+            background: var(--color-primary-variant) !important;
+        }
+
+        /* Side Panel URL Display Copy Button Hover */
+        .side-panel-url-display .side-panel-copy-btn:hover {
+            background: rgba(122, 122, 122, 0.5) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+
+        /* Side Panel Strong Elements */
+        .side-panel strong {
+            color: var(--bulma-white-bis);
+        }
+
+        /* Malicious items styling in side panel */
+        .side-panel-item.malicious .side-panel-item-title {
+            color: var(--color-danger) !important;
+        }
+
+        .side-panel-item.malicious .side-panel-item-url {
+            color: var(--color-danger) !important;
+        }
+
+        .side-panel-item.malicious strong {
+            color: var(--color-danger) !important;
+        }
+
+        .side-panel-item.malicious {
+            border-color: var(--color-danger) !important;
+            background: rgba(255, 56, 96, 0.05) !important;
+        }
+    </style>
+</head>
+<body class="has-text-light">
+    <div class="container">
+        <h1 class="title is-4 has-text-centered mb-4">Gmail Threat Analyzer</h1>
+
+        <div class="box">
+            <h2 class="title is-5 has-text-light mb-3">VirusTotal API Key</h2>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-medium" type="text" id="apiKeyInput" placeholder="Enter your VirusTotal API Key">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox has-text-light" id="rememberApiKeyLabel">
+                        <input type="checkbox" id="rememberApiKey" disabled>
+                        Remember API Key for future sessions
+                    </label>
+                </div>
+            </div>
+            <p id="apiKeyStatus" class="help mt-2"></p>
+        </div>
+
+        <button id="analyzeBtn" class="button has-text-black-bis has-background-success is-fullwidth is-medium mb-2">
+            <span id="analyzeText">Analyze Email</span>
+            <span id="loadingSpinner" class="loading-spinner ml-2 is-hidden"></span>
+        </button>
+        <button id="reanalyzeBtn" class="button has-text-black-bis has-background-white-ter is-fullwidth is-medium is-hidden">Reanalyze</button>
+        
+        <div id="resultsContainer" class="mt-4 is-hidden">
+            <div class="box">
+                <h2 class="title is-5 has-text-light mb-3">Overall Email Score</h2>
+                <div id="overallScore" class="notification has-text-centered is-size-5 has-text-weight-bold p-4">
+                    <!-- Overall Score will be injected here -->
+                </div>
+                <p class="is-size-7 has-text-light mt-2">Severity: <span id="severityText" class="has-text-weight-bold"></span></p>
+                <div class="mt-4 is-size-7">
+                    <blockquote class="copy-container">
+                        <span>Sender: 
+                            <span id="senderUsername" class="has-text-weight-bold"></span>@<span id="senderDomainName" class="has-text-weight-bold"></span>
+                        </span>
+                        <button class="button copy-domain-btn is-small copy-sender-btn">
+                            ⧉
+                        </button>
+                    </blockquote>
+                    <blockquote class="copy-container">
+                        <span>Sender Domain: <span id="senderDomainDisplay" class="has-text-weight-bold"></span> Score: <span id="domainScoreDisplay" class="has-text-weight-bold"></span></span>
+                        <button class="button copy-domain-btn is-small copy-domain-main-btn">
+                            ⧉
+                        </button>
+                    </blockquote>
+                    <blockquote>Sender Domain Score: <span id="domainOverallScore" class="has-text-weight-bold"></span></blockquote>
+                    <blockquote>URLs Found: <span id="urlCount" class="has-text-weight-bold"></span>, Malicious: <span id="urlOverallScore" class="has-text-weight-bold"></span></blockquote>
+                    <blockquote>Attachments Found: <span id="attachmentCount" class="has-text-weight-bold"></span>, Risky: <span id="filehashOverallScore" class="has-text-weight-bold"></span> <span class="has-text-grey-light">(Security analysis)</span></blockquote>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 class="title is-5 has-text-light mb-3">Detailed Reputation</h2>
+
+                <!-- Sender Domain Reputation -->
+                <div class="mb-2">
+                    <button class="button is-primary analysis-btn is-fullwidth is-medium" id="viewAllDomains">
+                        <span>View Domain Analysis</span>
+                    </button>
+                </div>
+
+                <!-- URL Reputation -->
+                <div class="mb-2">
+                    <button class="button is-primary analysis-btn is-fullwidth is-medium" id="viewAllUrls">
+                        <span>View URLs Analysis</span>
+                    </button>
+                </div>
+
+                <!-- Attachment Reputation -->
+                <div>
+                    <button class="button is-primary analysis-btn is-fullwidth is-medium" id="viewAllAttachments">
+                        <span>View Attachments Analysis</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 class="title is-5 has-text-light mb-3">Email Content</h2>
+                
+                <!-- Email Subject -->
+                <div class="mb-3">
+                    <label class="label has-text-light mb-2">Subject:</label>
+                    <div class="content">
+                        <blockquote id="emailSubject" class="copy-container">
+                            No subject available
+                            <button class="button copy-domain-btn is-small copy-subject-btn">
+                                ⧉
+                            </button>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Email Body -->
+                <div>
+                    <label class="label has-text-light">Body:</label>
+                    <div class="content">
+                        <div id="emailBody" class="has-text-light" style="max-height: 200px; overflow-y: auto; padding: 1rem; background: var(--bulma-black-bis); border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.875rem; line-height: 1.5;">
+                            No email body available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Side Panel -->
+    <div id="sidePanel" class="side-panel">
+        <div class="side-panel-header">
+            <h3 id="sidePanelTitle" class="title is-6">Items List</h3>
+            <button id="closeSidePanel" class="button is-small side-panel-close-btn">
+                ⨉
+            </button>
+        </div>
+        <div class="side-panel-content">
+            <div id="sidePanelBody" class="side-panel-body">
+                <!-- Content will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Panel Overlay -->
+    <div id="sidePanelOverlay" class="side-panel-overlay"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

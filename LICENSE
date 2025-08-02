@@ -1,0 +1,34 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2025 Gmail Threat Analyzer Extension
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+---
+
+Gmail Threat Analyzer - Advanced Email Security Scanner
+Copyright (C) 2025
+
+This extension analyzes Gmail emails for potential security threats using 
+the VirusTotal API. It performs comprehensive security analysis of:
+- Sender domain reputation
+- URL safety scanning  
+- Attachment security assessment
+
+Contact: [Your contact information]
+
+This program is licensed under the GNU General Public License v3.0.
+Any derivative works must also be licensed under GPL-3.0, preventing
+proprietary commercialization while allowing open source collaboration.
