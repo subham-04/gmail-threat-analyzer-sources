@@ -23,7 +23,7 @@ Watch the full demo video:
 ## 🧩 Download Extension
 
 Install the Gmail Threat Analyzer Chrome Extension:  
-👉 [Click here to install from Chrome Web Store](EXTENSION_LINK_HERE)
+👉 [Click here to install from Firefox](https://addons.mozilla.org/en-US/firefox/addon/gmail-threat-analyzer/)
 
 ---
 
